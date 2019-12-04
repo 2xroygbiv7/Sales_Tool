@@ -1,0 +1,32 @@
+<h1>Customers</h1>
+
+<p>Total customers: <%= @customers.count %> customers.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Group</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Postcode</th>
+      <th>Pricelist</th>
+      <th>Start Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.customer_id %></td>
+        <td><%= customer.customer_name %></td>
+        <td><%= customer.group_id %></td>
+        <td><%= customer.city %></td>
+        <td><%= customer.state %></td>
+        <td><%= customer.postcode %></td>
+        <td><%= customer.pricelist %></td>
+        <td><%= customer.start_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
