@@ -31,12 +31,16 @@ namespace :import do
               FROM        PEN001.dbo.OEINVH I
               INNER JOIN  PEN001.dbo.OEINVD D ON I.INVUNIQ = D.INVUNIQ
               WHERE       INVFISCYR IN ('2020')
+                          AND INVFISCPER >= '8'
               ORDER BY    I.INVDATE DESC"
     result = client.execute(sql)
     if result == [] then 
       puts "ERROR: SQL query has not return data!"
     end
-    r = result.each
+    r = result.map do |row|
+      row["customer_id"] = Customer.find_by(customer_id: row["customer_id"]).id if (Customer.find_by(customer_id: row["customer_id"])).present?
+      row
+    end
     if result.affected_rows > 0 then
       puts "#{result.affected_rows} row(s) affected in MSSQL Server"
     end

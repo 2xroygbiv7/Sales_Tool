@@ -1,0 +1,3 @@
+row["customer_id"] = Customer.find_by(customer_id: row["customer_id"]).id
+row["customer_id"] = Customer.find_by(customer_id: row["customer_id"]).id
+
