@@ -1,0 +1,42 @@
+<h1>Invoice <%= @invoice.invoice_id %></h1>
+
+<p>Total line items: <%= @invoice_items.count %> items.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Cust ID</th>
+      <th>Order ID</th>
+      <th>Item ID</th>
+      <th>Ord Qty</th>
+      <th>BO Qty</th>
+      <th>Ship Qty</th>
+      <th>Unit Prc</th>
+      <th>Inv Prc</th>
+      <th>Fisc Yr</th>
+      <th>Fisc Mo</th>
+      <th>Inv Dt</th>
+      <th>Sales ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoice_items.each do |item| %>
+      <tr>
+        <td><%= item.invoice_id %></td>
+        <td><%= item.customer_id %></td>
+        <td><%= item.order_id %></td>
+        <td><%= item.item_id %></td>
+        <td><%= item.order_qty %></td>
+        <td><%= item.backorder_qty %></td>
+        <td><%= item.shipped_qty %></td>
+        <td><%= item.unit_price %></td>
+        <td><%= item.invoice_price %></td>
+        <td><%= item.fiscal_year %></td>
+        <td><%= item.fiscal_month %></td>
+        <td><%= item.invoice_date %></td>
+        <td><%= item.sales_person_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

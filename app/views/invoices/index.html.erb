@@ -1,0 +1,42 @@
+<h1>Invoices</h1>
+
+<p>Total invoices: <%= @invoices.count %> invoices.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Cust ID</th>
+      <th>Order ID</th>
+      <th>Line Items</th>
+      <th>Ord Qty</th>
+      <th>BO Qty</th>
+      <th>Ship Qty</th>
+      <th>Unit Prc</th>
+      <th>Inv Prc</th>
+      <th>Fisc Yr</th>
+      <th>Fisc Mo</th>
+      <th>Inv Dt</th>
+      <th>Sales ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice[1].first.invoice_id %></td>
+        <td><%= invoice[1].first.customer_id %></td>
+        <td><%= invoice[1].first.order_id %></td>
+        <td><%= invoice[1].group_by(&:item_id).count %></td>
+        <td><%= invoice[1].map {|li| li['order_qty']}.reduce(0, :+) %></td>
+        <td><%= invoice[1].map {|li| li['backorder_qty']}.reduce(0, :+) %></td>
+        <td><%= invoice[1].map {|li| li['shipped_qty']}.reduce(0, :+) %></td>
+        <td><%= invoice[1].map {|li| li['unit_price'] * li['shipped_qty']}.reduce(0, :+)%></td>
+        <td><%= invoice[1].map {|li| li['invoice_price']}.reduce(0, :+) %></td>
+        <td><%= invoice[1].first.fiscal_year %></td>
+        <td><%= invoice[1].first.fiscal_month %></td>
+        <td><%= invoice[1].first.invoice_date %></td>
+        <td><%= invoice[1].first.sales_person_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

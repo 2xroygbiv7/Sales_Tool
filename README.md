@@ -9,6 +9,9 @@
 * [ ] Invoice view index with aggregated revenue
 * [ ] Invoice show with itemized invoice items and aggregated revenue
 
+## To Fix
+* [ ] Include DISCPER and TBASE1 (inv aft disc) in rake invoice import
+
 ## Usefull rails c Commands
 * Customer.find(378).invoices.map(&:invoice_id).uniq
 * Customer.find(378).invoices.map(&:item_id)
